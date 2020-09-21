@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Upload Files{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Upload Files</h1>
+            <form action="{% url 'forms:uploadfiles' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token%}
+                <table class="table">
+                    {{ form }}
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="OK"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Cleaned_data File Object</h2>
+            <p>close(), encoding, fileno, newlines</p>
+            <table class="table table-hover">
+                {% for item in cdata %}
+                    <tr>
+                        <td>{{ item }}</td>
+                        <td>{{ item.value }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            {# cdata.upfile.size #}
+        </div>
+    </div>
+{% endblock %}

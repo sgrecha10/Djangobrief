@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+    {% block title %}Model Forms{% endblock %}
+
+    {% block content %}
+        <div class="row"><div class="col-sm-12">
+            <h1>Model Forms (django.forms.ModelForm)</h1>
+        </div></div>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>AuthorForm</h2>
+                <form method="post" action="{% url 'forms:modelforms' %}" id="form1">
+                    {% csrf_token %}
+                    <table class="table">
+                        {{ authorform }}
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="OK"></td>
+                        </tr>
+                    </table>
+
+                </form>
+            </div>
+            <div class="col-sm-6">
+                <h2>BookForm</h2>
+                <form method="post" action="{% url 'forms:modelforms' %}" id="form2">
+                    {% csrf_token %}
+                    <table class="table">
+                        {{ bookform }}
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="OK"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Authors</h2>
+                <table class="table table-hover">
+                    {% for item in authors %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'forms:modelformauthor' item.pk %}">{{ item.pk }}</a>
+                            </td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.title }}</td>
+                            <td>{{ item.birth_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+            <div class="col-sm-6">
+                <h2>Books</h2>
+                <table class="table table-hover">
+                    {% for item in books %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'forms:modelformbook' item.pk %}">{{ item.pk }}</a>
+                            </td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.authors }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    {% endblock %}

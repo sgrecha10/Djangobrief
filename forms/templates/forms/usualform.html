@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+    {% block title %}Usual Forms{% endblock %}
+    {% block content %}
+        <div class="row">
+            <div class="col-sm-9">
+                <h1>Usual Forms (django.forms.Form)</h1>
+                <form method="post" action="{% url 'forms:usualforms' %}">
+                    {% csrf_token %}
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Label</th>
+                            <th>Field</th>
+                            <th>Cleaned_data</th>
+                        </tr>
+                        {% for item in form %}
+                        <tr>
+                            <td class="{{ item.css_classes }}">{{ item.label_tag }}</td>
+                            <td>
+                                {% if item.errors %}
+                                    {% for error in item.errors %}
+                                        <p class="alert alert-danger">{{ error }}</p>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {{ item }}
+                                {% if item.help_text %}
+                                    <p>{{ item.help_text|safe }}</p>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{ item.myattr }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td colspan="2">
+                                <input type="submit" value="OK">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <div class="col-sm-3">
+                <h3>Аргументы поля</h3>
+                <dl>
+                    <dt>required</dt>
+                    <dd>определение</dd>
+
+                    <dt>label</dt>
+                    <dd></dd>
+
+                    <dt>label_suffix</dt>
+                    <dd></dd>
+
+                    <dt>initial</dt>
+                    <dd></dd>
+
+                    <dt>widget</dt>
+                    <dd></dd>
+
+                    <dt>help_text</dt>
+                    <dd></dd>
+
+                    <dt>error_messages={'required': 'Please enter your name'}</dt>
+                    <dd></dd>
+
+                    <dt>validators</dt>
+                    <dd></dd>
+
+                    <dt>localize</dt>
+                    <dd></dd>
+
+                    <dt>disabled</dt>
+                    <dd></dd>
+
+                    <dt>max_length</dt>
+                    <dd></dd>
+
+                    <dt>min_length</dt>
+                    <dd></dd>
+
+                    <dt>strip</dt>
+                    <dd>обрезает пробелы в начале/конце</dd>
+
+                    <dt>empty_value</dt>
+                    <dd></dd>
+
+                    <dt>choices</dt>
+                    <dd></dd>
+
+                    <dt>coerce</dt>
+                    <dd>Функция, которая принимает один аргумент и возвращает преобразованное значение.
+                        Преобразование происходит после валидации</dd>
+
+                    <dt>input_formats</dt>
+                    <dd></dd>
+
+                    <dt>max_digits (для DecimalField)</dt>
+                    <dd></dd>
+
+                    <dt>decimal_places (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>path (для FilePathField)</dt>
+                    <dd></dd>
+
+                    <dt>recursive (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>match (аналогично, регулярка)</dt>
+                    <dd></dd>
+
+                    <dt>allow_files (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>allow_folders (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>protocol (для GenericIPAddressField)</dt>
+                    <dd></dd>
+
+                    <dt>unpack_ipv4 (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>regex (для RegexField)</dt>
+                    <dd></dd>
+
+                    <dt>allow_unicode (для SlugField)</dt>
+                    <dd></dd>
+
+                    <dt>fields (для ComboField, MultiValueField)</dt>
+                    <dd></dd>
+
+                    <dt>require_all_fields (для MultiValueField)</dt>
+                    <dd></dd>
+
+                    <dt>compress (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>input_date_formats (для SplitDateTimeField)</dt>
+                    <dd></dd>
+
+                    <dt>input_time_formats (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>queryset (для ModelChoiceField)</dt>
+                    <dd></dd>
+
+                    <dt>empty_label (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>to_field_name (аналогично)</dt>
+                    <dd></dd>
+
+                    <dt>Form.has_changed()</dt>
+                    <dd></dd>
+
+                    <dt>Field.clean(value)</dt>
+                    <dd></dd>
+                </dl>
+            </div>
+        </div>
+    {% endblock %}

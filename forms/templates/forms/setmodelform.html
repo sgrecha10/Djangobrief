@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Model Form Sets{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Model Form Sets</h2>
+            <form method="post" action="{% url 'forms:setmodelforms' %}">
+                {% csrf_token %}
+                <table class="table table-hover">
+                    {{ formset }}
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="OK"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}

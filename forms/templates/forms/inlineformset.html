@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Inline Form Sets{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Inline Form Sets</h1>
+            <form action="{% url 'forms:inlineformset' %}" method="post">
+                {% csrf_token %}
+                <table class="table table-hover">
+                    {{ formset }}
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="OK"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Custom Forms & Fields{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Custom Forms & Fields</h1>
+            <form action="{% url 'forms:customforms' %}" method="post">
+                {% csrf_token %}
+                <table class="table">
+                    {{ form }}
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="OK"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}

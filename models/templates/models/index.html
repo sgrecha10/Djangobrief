@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Models{% endblock %}
+{% block content %}
+    {% comment %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Authors</h1>
+            <ul>
+            {% for author in authors %}
+                <li>
+                    <h2>{{ author.name }}</h2>
+                    <h4>Entrys:</h4>
+                    <ul>
+                    {% for entry in author.entry_set.all %}
+                        <li>
+                            {{ entry.headline }}
+                            <h4>Blogs:</h4>
+                            <ul>
+                                <li>{{ entry.blog.name }}</li>
+                            </ul>
+
+
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endcomment %}
+    {% comment %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Blogs</h1>
+            <ul>
+                {% for blog in blogs %}
+                <li>
+                    <h2>{{ blog.name }}</h2>
+                    <h4>Entrys:</h4>
+                    <ul>
+                        {% for entry in blog.entry_set.all %}
+                        <li>
+                            {{ entry.headline }}
+                            <h4>Authors:</h4>
+                            <ul>
+                                {% for author in entry.authors %}
+                                <li>{{ author.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+    <hr>
+    {% endcomment %}
+
+    <div class="row">
+    <div class="col-sm-12">
+        <h1>Entrys:</h1>
+        <ul>
+            {% for item in entrys %}
+            <li>
+                <h2>{{ item.headline }}</h2>
+                <h4>Blogs</h4>
+                <ul>
+                    <li>{{ item.blog.name }}</li>
+                </ul>
+                <h4>Authors</h4>
+                <ul>
+                    {# for a in item.author.all #}
+                    {% for a in item.myattr %}
+                        <li>{{ a.name }}</li>
+                    {% endfor %}
+                    {% comment %}
+                    <li><hr></li>
+                    {% for a in item.rev %}
+                        <li>{{ a.name }}</li>
+                    {% endfor %}
+                    {% endcomment %}
+                </ul>
+            </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+{% endblock %}

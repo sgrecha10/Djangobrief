@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Upload Files Model{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Upload Files Model</h1>
+        <form enctype="multipart/form-data" method="post" action="{% url 'forms:uploadfilesmodel' %}">
+            {% csrf_token %}
+            <table class="table">
+                {{ form }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="OK">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        {% for item in uploadfiles %}
+            <img src="/media/{{ item.upfile }}">
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

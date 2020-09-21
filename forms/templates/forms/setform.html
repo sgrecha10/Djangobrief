@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Form Sets{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Form Sets</h1>
+            <form action="{% url 'forms:setforms' %}" method="post">
+                {% csrf_token %}
+                <table class="table">
+                    {{ formset }}
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="OK"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Cleaned_data</h2>
+            <table class="table table-hover">
+            {% for i in cleaned_data %}
+                <tr>
+                    <td>{{ i.multiemail }}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.datetimefield }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

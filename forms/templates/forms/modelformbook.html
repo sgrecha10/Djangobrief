@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование Book{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-row-12">
+        <h1>Редактирование Book</h1>
+        <form method="post" action="{% url 'forms:modelformbook' book_id %}">
+            {% csrf_token %}
+             <table class="table">
+                {{ form }}
+                 <tr>
+                     <td></td>
+                     <td><input type="submit" value="OK"></td>
+                 </tr>
+            </table>
+        </form>
+    </div>
+</div>
+{% endblock %}

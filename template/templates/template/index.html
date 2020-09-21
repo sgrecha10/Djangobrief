@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Templates{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Template</h1>
+            <table class="table table-hover">
+            {% for row in listfilters %}
+                <tr>
+                    <td>data | {{ row.0 }}</td>
+                    <td>
+                        <ul>
+                        {% for item in row.1 %}
+                            <li>
+                                <div>{{ item }}</div>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

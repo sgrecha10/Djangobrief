@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование Author{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-row-12">
+        <h1>Редактирование Author</h1>
+        <form method="post" action="{% url 'forms:modelformauthor' author_id %}">
+            {% csrf_token %}
+             <table class="table">
+                {{ form }}
+            </table>
+            <input type="submit" value="OK">
+        </form>
+    </div>
+</div>
+{% endblock %}
