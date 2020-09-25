@@ -16,16 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+
 # для media files
 from django.conf.urls.static import static
 from django.conf import settings
 # для media files конец
+
+from django.http import HttpResponse
+
+handler403 = 'template.views.response_error_handler'
+handler404 = lambda request, exception: HttpResponse('привет')
 
 urlpatterns = [
     path('request/', include('request.urls')),
     path('forms/', include('forms.urls')),
     path('models/', include('models.urls')),
     path('template/', include('template.urls')),
+    path('views/', include('views.urls')),
     path('admin/', admin.site.urls),
 ]
 # для отображения media files

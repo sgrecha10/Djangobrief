@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %}TemplateResponse{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>TemplateResponse</h1>
+            <p>Этот шаблон подключен в template_response_middleware</p>
+            {{ data }}
+        </div>
+    </div>
+{% endblock %}

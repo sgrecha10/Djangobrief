@@ -1,11 +1,24 @@
-from django.shortcuts import render
-from django.template import Template, Context
-from django.http import HttpResponse
+from django.shortcuts import render, reverse
+from django.template import Template, Context, loader
+from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseNotFound
+from django.core.exceptions import PermissionDenied
+
+from django.template.response import TemplateResponse
+
+# обработчик для handler403. Назначается всегда в корневом urlconf, вызывается исключением PermissionDenied
+def response_error_handler(request, exception=None):
+    return HttpResponse('Error handler content', status=301)
+
 
 # Create your views here.
 def index(request):
 
-    typelist = [1, 2, 'anna']
+    raise PermissionDenied
+    # raise Http404  # сработает только если DEBUG = False
+
+
+
+    """typelist = [1, 2, 'anna']
     typestr = ''
     typeint = 123213
 
@@ -41,4 +54,4 @@ def index(request):
 
     template = Template(page)
     context = {'listfilters': listfilters, 'typelist': typelist, 'typestr': typestr, 'typeint': typeint}
-    return HttpResponse(template.render(Context(context)))
+    return HttpResponse(template.render(Context(context)))"""

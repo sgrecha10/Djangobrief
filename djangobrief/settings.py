@@ -37,6 +37,7 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'views.apps.ViewsConfig',
     'template.apps.TemplateConfig',
     'models.apps.ModelsConfig',
     'request.apps.RequestConfig',
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'views.views.template_response_middleware',
 ]
 
 ROOT_URLCONF = 'djangobrief.urls'

@@ -33,8 +33,8 @@ class BlogManager(models.Manager):
         print('Мы тут!')
         return super().create(*args, **kwards)
 
-    def get_queryset(self):
-        return super().get_queryset().filter(name__contains='вариант')
+    """def get_queryset(self):
+        return super().get_queryset().filter(name__contains='вариант')"""
 
     def with_counts(self):
         print('мы тут')
