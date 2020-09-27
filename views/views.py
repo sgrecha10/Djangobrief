@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
-from django.views.generic import TemplateView, ListView, DetailView, View, RedirectView
+from django.views.generic import TemplateView, ListView, DetailView, View, RedirectView, \
+    FormView, CreateView, UpdateView, DeleteView
 from models.models import Blog
 from django.forms import modelform_factory
 from django.urls import reverse_lazy, reverse
+from . import forms
 
 
 # my middleware
@@ -63,33 +65,108 @@ class ClassRedirectView(RedirectView):
     url = reverse_lazy('views:classview')
 
 
-"""class ClassBasedViews(DetailView):
-    
+class ClassDetailView(DetailView):
+    # обьект выбирается передачей pk или slug из urlconf.
+    # По другим полям выборка не работает (можно переопределить в get_object)
+    # Указывать где то в этом классе способ выбора не требуется.
+
     # model = Blog
     # или
     queryset = Blog.objects.all()
 
-    template_name = 'views/classview.html'
+    template_name = 'views/classdetailview.html'
     # extra_context = {'data': 'grecha'}
-    # по умолчанию, переменная в шаблоне со списком обьектов object_list
-    # что бы переопределить название:
-    context_object_name = 'data'
 
+    # по умолчанию, переменная в шаблоне со списком обьектов object_list
+    # переопределить можно так:
+    context_object_name = 'data'
+    # или в get_context_object_name()
+
+    def get_template_names(self, *args, **kwargs):
+        temp_name = super().get_template_names(*args, **kwargs)
+        # print(temp_name)
+        # temp_name = ['views/index.html'] можно заменить шаблон прямо тут
+        return temp_name
+
+    def get_queryset(self):
+        # если переназначить q то работает только если фильтр в q совпадает с pk из urlconf. иначе 404
+        q = super().get_queryset()
+        print(q)
+        return q
+
+    def get_object(self, queryset=None):
+        # обьект для отображения экземпляра классы определяется этим методом
+        print(self.kwargs['ug'])
+        obj = Blog.objects.get(pk=self.kwargs['ug'])
+        return obj
 
     def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['newdata'] = 'New data add through get_context_data'
         return context
 
-
-    def get_object(self):
+    """def get_object(self):
         obj = super().get_object()
         print('get_object')
         obj.tagline = 'Таглайн из get_object'
         obj.save()
-        return obj
+        return obj"""
 
-    # этот метод вызывается при запросе get. есть соотв. методы для запросов head, post и других
-    #def get(self, *args, **kwargs):
-    #    return HttpResponse('get')
-"""
+
+class ClassListView(ListView):
+    template_name = 'views/classlistview.html'
+    model = Blog
+    context_object_name = 'data'  # по умолчанию self.object_list
+    paginate_by = 2
+
+    """def get_queryset(self):
+        return self.model.objects.short_list()"""
+
+
+    """def get(self, *args, **kwargs):
+        # print('get')
+        g = super().get(*args, **kwargs)
+        print(g.template_name)
+        return g"""
+
+
+class ClassFormView(FormView):
+    template_name = 'views/formview.html'
+    form_class = forms.ContactForm
+    success_url = reverse_lazy('views:templateresponse')
+
+    def form_valid(self, form):
+        # тут можно, например, отправить мейл пользователю.
+        # form.send_email()
+        print('Все валидно', form.cleaned_data['email'])
+        return super().form_valid(form)
+
+
+class ClassCreateView(CreateView):
+    template_name = 'views/createform.html'
+    model = Blog
+    fields = '__all__'
+    success_url = reverse_lazy('views:templateresponse')
+    # template_name_suffix = '_create_form'
+
+    def form_valid(self, form):
+        # print(self.object) #  обьекта еще нет, возвращает None
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        # print(self.object.tagline)  # а тут есть, метод вызывается после form_valid
+        return super().get_success_url()
+
+
+class ClassUpdateView(UpdateView):
+    template_name = 'views/updateform.html'
+    model = Blog
+    fields = '__all__'
+    success_url = reverse_lazy('views:templateresponse')
+
+
+class ClassDeleteView(DeleteView):
+    template_name = 'views/deleteform.html'
+    model = Blog
+    fields = '__all__'
+    success_url = reverse_lazy('views:templateresponse')

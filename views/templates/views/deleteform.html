@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Create View{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Create View</h1>
+            <form action="{% url 'views:classdeleteview' %}" method="POST">
+            {% csrf_token %}
+            <table class="table">
+                {{ object }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="OK">
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}

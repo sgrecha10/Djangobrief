@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}DetailView{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>DetailView</h1>
+            <p>{{ data.name }}</p>
+            <p>{{ data.tagline }}</p>
+            <p>{{ newdata }}</p>
+        </div>
+    </div>
+{% endblock %}

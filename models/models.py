@@ -40,6 +40,9 @@ class BlogManager(models.Manager):
         print('мы тут')
         return super().get_queryset().annotate(counts=Count('entry'))
 
+    def short_list(self):
+        return self.model.objects.all()[:4]
+        # return super().get_queryset()[:3]
 
 
 class Blog(models.Model):

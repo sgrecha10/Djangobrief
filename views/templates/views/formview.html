@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Form View{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Form View</h1>
+            <form action="{% url 'views:classformview' %}" method="POST">
+            {% csrf_token %}
+            <table class="table">
+                {{ form }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="OK">
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}
