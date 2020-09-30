@@ -33,6 +33,7 @@ urlpatterns = [
     path('models/', include('models.urls')),
     path('template/', include('template.urls')),
     path('views/', include('views.urls')),
+    path('myauth/', include('myauth.urls')),
     path('admin/', admin.site.urls),
 ]
 # для отображения media files

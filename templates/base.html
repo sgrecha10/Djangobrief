@@ -52,6 +52,17 @@
                         <a class="dropdown-item" href="{% url 'views:classdeleteview' %}">DeleteView</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">MyAuth</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="{% url 'myauth:user_actions' %}">User Actions</a>
+                        <a class="dropdown-item" href="{% url 'myauth:user_authenticate' %}">User Authenticate</a>
+                        <a class="dropdown-item" href="{% url 'myauth:simple_authenticate' %}">Simple Authenticate</a>
+                        <a class="dropdown-item" href="{% url 'myauth:decorator_authenticate' %}">Decorator Authenticate</a>
+                        <a class="dropdown-item" href="{% url 'myauth:mixin_authenticate' %}">Mixin Authenticate</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>

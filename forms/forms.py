@@ -1,5 +1,6 @@
 from django import forms
-import datetime
+# import datetime
+from django.utils import timezone
 from . import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext as _
@@ -44,7 +45,7 @@ class ContactForm(forms.Form):
                                             'class': 'special',
                                             'type': 'datetime-local'
                                         }),
-                                        initial=datetime.datetime.now(),
+                                        initial=timezone.now,
                                         help_text='datetime-local Bootstrap 4'
                                         )
 
@@ -141,8 +142,8 @@ class UsualForm(forms.Form):
     choicefield = forms.ChoiceField(choices=YEAR_IN_SCHOOL_CHOICES, label="ChoiceField")
 
     typedchoicefield = forms.TypedChoiceField(choices=YEAR_IN_SCHOOL_CHOICES, coerce=str, label="TypedChoiceField")
-    datefield = forms.DateField(initial=datetime.datetime.now(), label="DateField")
-    datetimefield = forms.DateTimeField(initial=datetime.datetime.now(), label="DateTimeField")
+    datefield = forms.DateField(initial=timezone.now, label="DateField")
+    datetimefield = forms.DateTimeField(initial=timezone.now, label="DateTimeField")
     decimalfield = forms.DecimalField(required=True, max_digits=4, decimal_places=2, label='DecimalField',
                                       error_messages={'max_digits': 'Слишком много цифр!'})
     durationfield = forms.DurationField(required=False, label="")
@@ -161,7 +162,7 @@ class UsualForm(forms.Form):
     nullbooleanfield = forms.NullBooleanField(label="NullBooleanField")
     # regexfield = forms.RegexField(label="RegexField")
     slugfield = forms.SlugField(required=False, allow_unicode=True, label="SlugField")
-    timefield = forms.TimeField(initial=datetime.datetime.now(), label="TimeField")
+    timefield = forms.TimeField(initial=timezone.now, label="TimeField")
     urlfield = forms.URLField(required=False, label="URLField")
     uuidfield = forms.UUIDField(required=False, label="UUIDField")
 
@@ -170,7 +171,7 @@ class UsualForm(forms.Form):
                                   fields=[forms.CharField(max_length=10), forms.EmailField()])
     # multivaluefield = forms.MultiValueField(label="MultiValueField")
 
-    splitdatetimefield = forms.SplitDateTimeField(initial=datetime.datetime.now(), label="SplitDateTimeField")
+    splitdatetimefield = forms.SplitDateTimeField(initial=timezone.now, label="SplitDateTimeField")
 
     # Поля для обработки связей
     # modelchoicefield = forms.ModelChoiceField(label="ModelChoiceField")

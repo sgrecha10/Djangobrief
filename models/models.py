@@ -1,6 +1,7 @@
 from django.db import models
-import datetime
+# import datetime
 from django.db.models import Count
+from django.utils import timezone
 
 
 # Create your models here.
@@ -95,8 +96,8 @@ class Entry(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     headline = models.CharField(max_length=255)
     text = models.TextField()
-    pub_date = models.DateField(default=datetime.date.today)
-    mod_date = models.DateField(default=datetime.date.today)
+    pub_date = models.DateField(default=timezone.now)
+    mod_date = models.DateTimeField(default=timezone.now)
     author = models.ManyToManyField(Author)
     number_of_comments = models.IntegerField(default=0)
     number_of_pingbacks = models.IntegerField(default=0)
@@ -112,3 +113,4 @@ class Entry(models.Model):
     def clean(self):
         print("Клин")
         return super().clean()
+

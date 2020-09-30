@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}User Authenticate{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>User Authenticate</h1>
+        <form method="post" action="{% url 'myauth:user_authenticate' %}">
+        {% csrf_token %}
+            <table class="table">
+                {{ form }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="OK">
+                        &nbsp;&nbsp;&nbsp;<a href="{% url 'myauth:logout' %}">logout</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+{% endblock %}
