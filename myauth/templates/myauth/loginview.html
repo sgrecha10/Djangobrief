@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}LoginView{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>LoginView (myauth)</h1>
+        <form method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="OK">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+</div>
+{% endblock %}

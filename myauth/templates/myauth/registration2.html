@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}User Registration ver.2{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>User Registration ver.2</h1>
+        <form method="post">{% csrf_token %}
+        <table class="table">
+            {{ form }}
+            <tr>
+                <td></td>
+                <td><input type="submit" value="OK"></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -58,9 +58,21 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="{% url 'myauth:user_actions' %}">User Actions</a>
                         <a class="dropdown-item" href="{% url 'myauth:user_authenticate' %}">User Authenticate</a>
+                        <a class="dropdown-item" href="{% url 'myauth:user_registration' %}">User Registration</a>
+                        <a class="dropdown-item" href="{% url 'myauth:user_registration2' %}">User Registration2</a>
+                        <hr>
                         <a class="dropdown-item" href="{% url 'myauth:simple_authenticate' %}">Simple Authenticate</a>
                         <a class="dropdown-item" href="{% url 'myauth:decorator_authenticate' %}">Decorator Authenticate</a>
                         <a class="dropdown-item" href="{% url 'myauth:mixin_authenticate' %}">Mixin Authenticate</a>
+                        <hr>
+                        <a class="dropdown-item" href="{% url 'myauth:loginview' %}">LoginView</a>
+                        <hr>
+                        <a class="dropdown-item" href="{% url 'myauth:login' %}">login</a>
+                        <a class="dropdown-item" href="{% url 'myauth:logout' %}">logout</a>
+                        <a class="dropdown-item" href="{% url 'myauth:password_change' %}">password_change</a>
+                        <a class="dropdown-item" href="{% url 'myauth:password_change_done' %}">password_change_done</a>
+                        <a class="dropdown-item" href="{% url 'myauth:password_reset' %}">password_reset</a>
+                        <a class="dropdown-item" href="{% url 'myauth:password_reset_done' %}">password_reset_done</a>
                     </div>
                 </li>
             </ul>
