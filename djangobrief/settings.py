@@ -37,6 +37,8 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sitemaps',
+    'tools.apps.ToolsConfig',
     'myauth.apps.MyauthConfig',
     'views.apps.ViewsConfig',
     'template.apps.TemplateConfig',

@@ -114,3 +114,5 @@ class Entry(models.Model):
         print("Клин")
         return super().clean()
 
+    def get_absolute_url(self):
+        return '/' + self.headline + '/'

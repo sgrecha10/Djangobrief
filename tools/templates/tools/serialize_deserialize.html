@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Serialize -> Deserialize{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Serialize -> Deserialize</h1>
+        {% for item in data %}
+        <div>{{ item }}, {{ item.object.name }}</div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

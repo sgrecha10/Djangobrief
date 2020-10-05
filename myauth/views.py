@@ -142,3 +142,4 @@ class MyLoginView(LoginView):
         context = super().get_context_data(**kwargs)
         context['next'] = reverse('myauth:simple_authenticate')
         return context
+

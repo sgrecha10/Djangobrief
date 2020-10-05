@@ -14,6 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import Sitemap
+from models.models import Entry
+
 from django.urls import path, include
 
 
@@ -27,6 +31,21 @@ from django.http import HttpResponse
 handler403 = 'template.views.response_error_handler'
 handler404 = lambda request, exception: HttpResponse('привет')
 
+
+class BlogSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return Entry.objects.all()
+
+    def lastmod(self, obj):
+        return obj.pub_date
+
+
+
+sitemaps = {'entry': BlogSitemap}
+
 urlpatterns = [
     path('request/', include('request.urls')),
     path('forms/', include('forms.urls')),
@@ -34,6 +53,8 @@ urlpatterns = [
     path('template/', include('template.urls')),
     path('views/', include('views.urls')),
     path('myauth/', include('myauth.urls')),
+    path('tools/', include('tools.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('admin/', admin.site.urls),
 ]
 # для отображения media files

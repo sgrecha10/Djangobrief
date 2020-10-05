@@ -129,11 +129,13 @@ class ClassListView(ListView):
         print(g.template_name)
         return g"""
 
+from django.contrib.messages.views import SuccessMessageMixin
 
-class ClassFormView(FormView):
+class ClassFormView(SuccessMessageMixin, FormView):
     template_name = 'views/formview.html'
     form_class = forms.ContactForm
     success_url = reverse_lazy('views:templateresponse')
+    success_message = "%(name)s was created successfully"
 
     def form_valid(self, form):
         # тут можно, например, отправить мейл пользователю.

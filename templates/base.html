@@ -75,6 +75,21 @@
                         <a class="dropdown-item" href="{% url 'myauth:password_reset_done' %}">password_reset_done</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Some Tools</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="{% url 'tools:messages_view' %}">Flash message</a>
+                        <a class="dropdown-item" href="{% url 'tools:xml_serialize_view' %}">XML-serialize</a>
+                        <a class="dropdown-item" href="{% url 'tools:json_serialize_view' %}">JSON-serialize</a>
+                        <a class="dropdown-item" href="{% url 'tools:serialize_deserialize_view' %}">
+                            Serialize -> Deserialize
+                        </a>
+                        <a class="dropdown-item" href="{% url 'tools:sessions_view' %}">Sessions</a>
+                        <a class="dropdown-item" href="{% url 'django.contrib.sitemaps.views.sitemap' %}">Sitemap</a>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </nav>

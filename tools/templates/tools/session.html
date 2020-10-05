@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Sessions{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Sessions</h1>
+
+        {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            {% else %}
+            <p><a href="{% url 'tools:sessions_view' %}?del_cookie">Удалить cookie (GET-ом, на скорую руку)</a></p>
+        {% endif %}
+
+        <table class="table table-hover">
+            <tr>
+                <td>request.COOKIES</td>
+                <td>{{ request.COOKIES }}</td>
+            </tr>
+            <tr>
+                <td>request.session</td>
+                <td>
+                    <p>{{ request.session }}</p>
+                    {% for key, value in request.session.items %}
+                        <p>{{ key }} = {{ value }}</p>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <td>Тестовая кука:</td>
+                <td>{{ test_cookie }}</td>
+            </tr>
+            <tr>
+                <td>settings.SESSION_COOKIE_AGE</td>
+                <td>{{ SESSION_COOKIE_AGE }}</td>
+            </tr>
+            <tr>
+                <td>get_expiry_age()</td>
+                <td>{{ request.session.get_expiry_age }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}
