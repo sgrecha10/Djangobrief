@@ -86,7 +86,10 @@
                             Serialize -> Deserialize
                         </a>
                         <a class="dropdown-item" href="{% url 'tools:sessions_view' %}">Sessions</a>
-                        <a class="dropdown-item" href="{% url 'django.contrib.sitemaps.views.sitemap' %}">Sitemap</a>
+                        <a class="dropdown-item" href="{% url 'django.contrib.sitemaps.views.index' %}">Sitemap</a>
+                        <a class="dropdown-item" href="{% url 'tools:static_view' %}">Static Files</a>
+                        <a class="dropdown-item" href="{% url 'tools:validators_view' %}">Validators</a>
+                        <a class="dropdown-item" href="{% url 'tools:contenttypes_view' %}">ContentTypes</a>
                     </div>
                 </li>
 

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Static Files{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Static Files</h1>
+        <img src="{% static "tools/anna.jpg" %}" alt="Anna">
+    </div>
+</div>
+{% endblock %}
