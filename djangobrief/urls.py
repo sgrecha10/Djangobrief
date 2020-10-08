@@ -29,6 +29,8 @@ from django.conf import settings
 
 from django.http import HttpResponse
 
+# from django.contrib.flatpages import views
+
 handler403 = 'template.views.response_error_handler'
 handler404 = lambda request, exception: HttpResponse('привет. я handler404 in urls.py')
 
@@ -72,9 +74,13 @@ urlpatterns = [
     path('tools/', include('tools.urls')),
     path('admin/', admin.site.urls),
 ]
+
 # для отображения media files
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += [
+    path('', include('django.contrib.flatpages.urls')),
+]
 
 if settings.DEBUG:
     import debug_toolbar

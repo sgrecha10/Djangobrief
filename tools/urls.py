@@ -12,4 +12,5 @@ urlpatterns = [
     path('static/', views.static_view, name='static_view'),
     path('validators/', views.validators_view, name='validators_view'),
     path('contenttypes/', views.contenttypes_view, name='contenttypes_view'),
+    path('signals/', views.signals_view, name="signals_view"),
 ]

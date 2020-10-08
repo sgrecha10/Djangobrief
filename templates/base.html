@@ -90,6 +90,15 @@
                         <a class="dropdown-item" href="{% url 'tools:static_view' %}">Static Files</a>
                         <a class="dropdown-item" href="{% url 'tools:validators_view' %}">Validators</a>
                         <a class="dropdown-item" href="{% url 'tools:contenttypes_view' %}">ContentTypes</a>
+                        <hr>
+                        {% load flatpages %}
+                        {% get_flatpages as flatpages %}
+                        {% for page in flatpages %}
+                        <a class="dropdown-item" href="{{ page.url }}">{{ page.title }}</a>
+                        {% endfor %}
+                        <hr>
+                        <a class="dropdown-item" href="/remote_url_for_redirect/">/remote_url_for_redirect/ (in BD)</a>
+                        <a class="dropdown-item" href="{% url 'tools:signals_view' %}">Signals</a>
                     </div>
                 </li>
 

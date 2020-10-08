@@ -37,6 +37,9 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'django.contrib.redirects',
     'django.contrib.sitemaps',
     'tools.apps.ToolsConfig',
     'myauth.apps.MyauthConfig',
@@ -54,6 +57,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
 ]
 
+# SITE_ID = 1
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -64,6 +69,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'views.views.template_response_middleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'djangobrief.urls'
