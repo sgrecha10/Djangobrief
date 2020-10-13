@@ -7,10 +7,11 @@ from django.conf import settings
 from .forms import TestValidatorForm
 from django.contrib.contenttypes.models import ContentType
 from .models import TaggedItem, MyUser
-from django.core.signals import request_started
-from django.dispatch import receiver
+# импортируем свой собственный сигнал из apps.py
+from .apps import my_little_signal
 
-
+from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.sites.models import Site
 
 # Create your views here.
 def messages_view(request):
@@ -137,26 +138,20 @@ def contenttypes_view(request):
     context = {'data': data}
     return render(request, 'tools/contenttypes.html', context)
 
-# создаем свой сигнал вне представлений, что бы он был доступен в представлениях для отправки и для функции получателя
-import django.dispatch
-my_little_signal = django.dispatch.Signal(providing_args=["top", "size"])
 
 def signals_view(request):
+    # отправляем сигнал. этот сигнал создан в apps.py
     my_little_signal.send(sender='signal_view', top=123, size=456)
 
     context = {'data': 'отправил my_little_signal смотри консоль'}
     return render(request, 'tools/signals.html', context)
 
+def sites_view(request):
 
-# обработчики сигналов
-@receiver(request_started)
-def my_callback_signal(sender, **kwargs):
-    print('my_callback_signal')
-
-@receiver(my_little_signal)
-def my_callback_signal_2(sender, **kwargs):
-    print('my_little_signal. top %s, size %s' % (kwargs['top'], kwargs['size']))
-
-# request_started.connect(my_callback_signal) # можно и так зарегистрировать сигнал, без декоратора
-
-# request_started.disconnect(my_callback_signal) # отключение сигнала
+    # вариант get_current_site(request) работает всегда, остальные - только при установленной SITE_ID
+    context = {'data': {
+        'settings.SITE_ID': settings.SITE_ID,
+        'get_current_site(request)': get_current_site(request),
+        'Site.objects.get_current()': Site.objects.get_current(),
+    }}
+    return render(request, 'tools/sites.html', context)

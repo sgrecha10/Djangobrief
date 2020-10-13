@@ -13,4 +13,5 @@ urlpatterns = [
     path('validators/', views.validators_view, name='validators_view'),
     path('contenttypes/', views.contenttypes_view, name='contenttypes_view'),
     path('signals/', views.signals_view, name="signals_view"),
+    path('sites/', views.sites_view, name='sites_view'),
 ]
